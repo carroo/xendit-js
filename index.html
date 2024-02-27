@@ -111,22 +111,21 @@
     <script>
       // Ambil parameter dari URL
       const urlParams = new URLSearchParams(window.location.search);
-      const gagal = urlParams.get("status");
-
-      // Periksa apakah parameter gagal ada dan bernilai 1
-      if (status === "1") {
-        Swal.fire({
-          icon: "success",
-          title: "hore...",
-          text: "Terima kasih infak anda berhasil semoga berkah!!!",
-        });
-      } else {
-        // Tampilkan pesan kesalahan menggunakan SweetAlert
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Maaf, infak anda tidak berhasil, coba lagi ya !!!.",
-        });
+      const status = urlParams.get("status");
+      if (status) {
+        if (status === "1") {
+          Swal.fire({
+            icon: "success",
+            title: "hore...",
+            text: "Terima kasih infak anda berhasil semoga berkah!!!",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Maaf, infak anda tidak berhasil, coba lagi ya !!!.",
+          });
+        }
       }
     </script>
 
