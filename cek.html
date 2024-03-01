@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Scraping HTML dan Menghilangkan Footer</title>
+</head>
+
+<body>
+	<h1>Data HTML Tanpa Footer:</h1>
+	<pre id="result"></pre>
+
+	<script>
+		// URL yang akan di-scrape
+		const url = 'http://infak.in/zakatuntukmualaf';
+
+		// Menggunakan fetch untuk mengambil konten dari URL
+		fetch(url)
+			.then(response => {
+				// Memastikan response dalam bentuk teks
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				return response.text();
+			})
+			.then(html => {
+				// Selanjutnya, Anda dapat melakukan apa pun yang Anda inginkan dengan konten HTML yang diambil
+				console.log(html);
+				// Misalnya, Anda dapat menggunakan DOM untuk mengekstrak data tertentu
+				const parser = new DOMParser();
+				const doc = parser.parseFromString(html, 'text/html');
+				const titles = doc.querySelectorAll('h1'); // Contoh: Mengambil semua elemen <h1> dari halaman
+				titles.forEach(title => console.log(title.textContent));
+			})
+			.catch(error => {
+				console.error('There has been a problem with your fetch operation:', error);
+			});
+	</script>
+</body>
+
+</html>
